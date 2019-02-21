@@ -1,21 +1,10 @@
 Minimum Viable Product 
 
-At the end of the project  our program will have 
-1.  User registration
+At the end of the project our program will have 
+1.  User registration page
 2.  ToDo list dashboard with 
   a. add 
   b. delete
   c. update
-  d.
-1. Create a registration page for user to log in.
-2. User can enter user name.
-3. User can enter email. 
-4. User can validate email.
-4. User can enter password.
-5. User can validate password.
-6. User can see confirmation page once registered.
-7. User registration confirmation email with link will be sent to user.
-8. User can access ToDo list dashboard once logged in.
-9. User can add ToDo list in a form of tasks.
-10. User can snooze task reminder notification.
-
+3.  A user will be able to receive confirmation email
+4.  A user will be able to change color scheme
