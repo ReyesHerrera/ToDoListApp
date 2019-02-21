@@ -1,4 +1,12 @@
-Our application will be a ToDo list app. The ToDo list app is a tool to help students with time management and planning various tasks and activities. 
+Minimum Viable Product 
+
+At the end of the project  our program will have 
+1.  User registration
+2.  ToDo list dashboard with 
+  a. add 
+  b. delete
+  c. update
+  d.
 1. Create a registration page for user to log in.
 2. User can enter user name.
 3. User can enter email. 
