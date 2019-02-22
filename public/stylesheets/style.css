@@ -6,6 +6,18 @@ header {
     padding: 15px;
 }
 
+header img {
+    max-width: 150px;
+    margin-right: 600px;
+}
+
+header a.button {
+    clear:left;
+    background: #393939;
+    color: #be4f0c;
+    padding: 10px;
+}
+
 body {
     background: #393939;
     padding: 50px;
@@ -14,9 +26,8 @@ body {
 
 main{
     background: #393939;
-    width:56.57%;
+    width:99%;
     float: left;
-    height: 600px;
     padding: 40px;
 }
 
