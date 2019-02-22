@@ -1,3 +1,11 @@
+header {
+    background: #FF5A09;
+    height: 150px;
+    width: 99%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
 body {
     background: #393939;
     padding: 50px;
@@ -15,7 +23,13 @@ main{
 /*          TYPOGRAPHY          */
 
 h1, h2, h3 {
+    font-size: 30px;
     color: #FF5A09;
+}
+
+h4, h5, h6 {
+    font-size: 15px;
+    color: #be4f0c;
 }
 
 p {
