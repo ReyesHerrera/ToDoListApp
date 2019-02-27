@@ -4,8 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//created additional variable; navbarRouter, updateTaskRouter,addTaskRouter and deleteTaskRouter
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var navbarRouter = require('./routes/navbar');
+var updateTaskRouter = require('./routes/updateTask');
+var addTaskRouter = require('./routes/addTask');
+var deleteTaskRouter = require('./routes/deleteTask');
 
 var app = express();
 
@@ -19,8 +24,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//added navbar, addTask, deleteTask, updateTask to view engine setup
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/navbar', navbarRouter);
+app.use('/updateTask', updateTaskRouter);
+app.use('/addTask', addTaskRouter);
+app.use('/deleteTask', deleteTaskRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  
+  
+  div (class="wrapper")
+  
+    nav
+        ul
+            li
+                a(href="index.pug") Log In Page
+            li 
+                a(href = "addTasks.pug") Add Tasks
+            li
+                a(href="deleteTask.pug") Delete a Task
+            li
+                a(href ="updateTask.pug") Update a Task
+    
+block content
