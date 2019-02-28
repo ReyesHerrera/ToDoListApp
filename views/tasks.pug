@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+    | Tasks everywhere
+    | Nice
+    form(action="." method="POST")
+    label(for="taskName") Task name:
+    input(
+      type="text"
+      id="taskName"
+      name="taskName"
+    )
+  
+    input(type="submit" value="Submit")
