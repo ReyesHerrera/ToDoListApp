@@ -2,14 +2,21 @@ extends layout
 
 block content
   h1 #{title}
-  p
-    form(action="." method="POST")
-    label(for="taskName") Task name:
 
-    input(
-      type="text"
-      id="taskName"
-      name="taskName"
-    )
+  -data = data || {}
 
-    input(type="submit" value="Submit")
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+  form(action="." method="POST")
+  label(for="taskName") Task name:
+  input(
+    type="text"
+    id="taskName"
+    name="taskName"
+    value=data.taskName
+  )
+
+  input(type="submit" value="Submit")

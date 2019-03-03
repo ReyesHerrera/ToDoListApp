@@ -4,6 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 //require modules from routes dir
 var indexRouter = require('./routes/index');
@@ -12,6 +14,14 @@ var tasksRouter = require('./routes/tasks');
 
 //create app
 var app = express();
+
+//DB Config
+var db = require('./config/keys').mongoURI
+
+// Connect to MongoDB
+mongoose.connect(db,{ useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //route-handling code
 app.use('/', indexRouter);
