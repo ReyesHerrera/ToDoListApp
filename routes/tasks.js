@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET task page. */
 router.get('/', function(req, res, next) {
-  res.render('tasks', { title: 'ToDoListApp' });
+  res.render('tasks', { title: 'TaskTaskTask' });
 });
 
 module.exports = router;
