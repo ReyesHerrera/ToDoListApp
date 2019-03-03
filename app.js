@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 //created additional variable; navbarRouter, updateTaskRouter,addTaskRouter and deleteTaskRouter
 var indexRouter = require('./routes/index');
@@ -13,6 +14,16 @@ var addTaskRouter = require('./routes/addTask');
 var deleteTaskRouter = require('./routes/deleteTask');
 
 var app = express();
+
+
+//DB Config
+var db = require('./config/keys').mongoURI
+
+// Connect to MongoDB
+mongoose.connect(db,{ useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
