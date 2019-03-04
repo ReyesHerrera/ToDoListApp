@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var { body, validationResult } = require('express-validator/check');
 
 var router = express.Router();
-var Task = mongoose.model('tasks');
+var Task = mongoose.model('Task', './models/tasks');
 
 /* GET taskview page.*/
 router.get('/tasksView', function(req, res) {

@@ -7,10 +7,15 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+// req schemas from models dir
+var tasksModel = require('./models/tasks');
+var usersModel = require('./models/users');
+
 //require modules from routes dir
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/tasks');
+var tasksViewRouter = require('./routes/tasksView');
 
 //create app
 var app = express();
@@ -40,6 +45,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
+app.use('/tasksView', tasksViewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

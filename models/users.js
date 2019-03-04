@@ -23,10 +23,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     trim: true
-  }
+  },
   createdDate: {
     type: String,
-    default: moment(new Date()).format("MMM DD, YYYY") //"Day, 5PM 18"
+    default: moment(new Date()).format("MMM DD, YYYY") //day, 5pm 18
   },
   tasks: {
     type: ObjectId,
