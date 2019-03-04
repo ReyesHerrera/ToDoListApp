@@ -1,6 +1,9 @@
 var express = require('express');
-var router = express.Router();
+var mongoose = require('mongoose');
 var { body, validationResult } = require('express-validator/check');
+
+var router = express.Router();
+var Task = mongoose.model('tasks');
 
 /* GET task page.*/
 router.get('/', function(req, res, next) {
@@ -17,17 +20,19 @@ router.post('/',
       var errors = validationResult(req);
 
       if (errors.isEmpty()) {
-        res.send('Task entered! \nYou\'re on a roll.');
+        var task = new Task(req.body);
+        task.save()
+          .then(() => { res.send('Task entered! \nYou\'re on a roll.'); })
+          .catch(() => { res.send('Sorry! Something went wrong.'); });
       } else {
         res.render('tasks', {
-          title: 'Add a Task',
+          title: 'Add a Task?',
           errors: errors.array(),
           data: req.body,
         });
       }
-    }
       console.log(req.body);
       //res.render('tasks', { title: 'Task Yourself' });
-);
+});
 
 module.exports = router;

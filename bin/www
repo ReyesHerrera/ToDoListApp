@@ -1,9 +1,26 @@
 #!/usr/bin/env node
 
 /**
+ * DB mongoose dependencies.
+ */
+require('dotenv').config();
+var mongoose = require('mongoose');
+
+mongoose.connect(process.env.DATABASE, { useMongoClient: true });
+mongoose.Promise = global.Promise;
+mongoose.connection
+  .on('connected', () => {
+    console.log('Mongoose connection open on ${process.env.DATABASE}');
+  })
+  .on('error', (err) => {
+    console.log('Connection error: ${err.message}');
+  });
+  
+require('./models/tasks');
+
+/**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('todolistapp:server');
 var http = require('http');

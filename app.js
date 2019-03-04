@@ -4,10 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-<<<<<<< HEAD
 var bodyParser = require('body-parser');
-=======
->>>>>>> 44c8ba19158292a67c42bffa1a9a5333e351d71d
 var mongoose = require('mongoose');
 
 //require modules from routes dir
@@ -18,10 +15,6 @@ var tasksRouter = require('./routes/tasks');
 //create app
 var app = express();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 44c8ba19158292a67c42bffa1a9a5333e351d71d
 //DB Config
 var db = require('./config/keys').mongoURI
 
@@ -30,10 +23,6 @@ mongoose.connect(db,{ useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 44c8ba19158292a67c42bffa1a9a5333e351d71d
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
