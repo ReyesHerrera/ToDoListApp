@@ -23,14 +23,30 @@ router.post('/',
         //find in db
         User.findById(req.user.id, (err, user) => {
           if (err) throw new Error(err);
-          //create object with data from task req
+          //create task object with data from task req
           const newTask = {
-            taskName: req.body.task
-          }
-        })
+            taskName: req.body.taskName,
+            taskDateDue: req.body.taskDateDue,
+            taskContent: req.body.taskContent,
+            taskAuthor: req.user._id //user is author
+          };
+          //create new task in db
+          Task.create(newTask, (err, post) => {
+            if (err) {
+              res.redirect('/');
+              throw new Error(err);
+            }
+            //insert newTask in posts field for user found in db call
+            user.tasks.push(newTask);
+            //save user with new data (task added)
+            user.save((err) => {
+              return res.redirect('/tasks/${task.id}');
+            });
+          })
+        });
 
-        var task = new Task(req.body);
-        task.save()
+        // var task = new Task(req.body);
+        newTask.save()
           .then(() => { res.send('Task entered! \nYou\'re on a roll.'); })
           .catch(() => { res.send('Sorry! Something went wrong.'); });
       } else {

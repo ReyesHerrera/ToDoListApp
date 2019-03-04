@@ -34,15 +34,15 @@ const UserSchema = new Schema({
   }
 });
 
-UserSchema.pre('save', function(next) {
-  var user = this;
-  bcrypt.hash(user.password, 10, function(err, hash) {
-    if (err) throw err;
-    user.password = hash;
-    console.log("Password hashed and user saved.");
-    next();
-  });
-});
+// UserSchema.pre('save', function(next) {
+//   var user = this;
+//   bcrypt.hash(user.password, 10, function(err, hash) {
+//     if (err) throw err;
+//     user.password = hash;
+//     console.log("Password hashed and user saved.");
+//     next();
+//   });
+// });
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
