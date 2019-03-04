@@ -7,7 +7,7 @@ var Task = mongoose.model('tasks');
 
 /* GET task page.*/
 router.get('/', function(req, res, next) {
-  res.render('tasks', { title: 'TaskTaskTask View' });
+  res.render('tasks', { title: 'TaskTaskTask' });
 });
 
 router.post('/',

@@ -16,12 +16,13 @@ var tasksRouter = require('./routes/tasks');
 var app = express();
 
 //DB Config
-var db = require('./config/keys').mongoURI
+// var db = require('./config/keys').mongoURI
 
 // Connect to MongoDB
-mongoose.connect(db,{ useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+// mongoose.connect(db,
+//   { useNewUrlParser: true })
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
