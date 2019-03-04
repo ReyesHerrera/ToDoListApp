@@ -19,4 +19,20 @@ block content
     value=data.taskName
   )
 
+  label(for="taskDateDue") Task date due:
+  input(
+    type="text"
+    id="taskDateDue"
+    name="taskDateDue"
+    value=data.taskDateDue
+  )
+
+  label(for="taskContent") Task description:
+    input(
+      type="text"
+      id="taskContent"
+      name="taskContent"
+      value=data.taskContent
+    )
+
   input(type="submit" value="Submit")

@@ -7,7 +7,7 @@ var Task = mongoose.model('tasks');
 
 /* GET task page.*/
 router.get('/', function(req, res, next) {
-  res.render('tasks', { title: 'TaskTaskTask' });
+  res.render('tasks', { title: 'TaskTaskTask View' });
 });
 
 router.post('/',
@@ -20,6 +20,15 @@ router.post('/',
       var errors = validationResult(req);
 
       if (errors.isEmpty()) {
+        //find in db
+        User.findById(req.user.id, (err, user) => {
+          if (err) throw new Error(err);
+          //create object with data from task req
+          const newTask = {
+            taskName: req.body.task
+          }
+        })
+
         var task = new Task(req.body);
         task.save()
           .then(() => { res.send('Task entered! \nYou\'re on a roll.'); })
