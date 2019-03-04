@@ -1,24 +1,32 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
+var moment = require('moment');
 
-var tasksSchema = new mongoose.Schema({
+
+const TaskSchema = new Schema({
   taskAuthor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    type: ObjectId,
+    ref: "User"
   },
   taskName: {
     type: String,
     trim: true,
+    required: true
   },
   taskDateEntered: {
-    type: Date
+    type: String,
+    default: moment(new Date()).format("MMM DD, YYYY") //"Sun, 3PM"
   },
   taskDateDue: {
     type: Date
   },
   taskContent: {
     type: String,
-    trim: true
+    trim: true,
+    default: "No description provided."
   }
 });
 
-module.exports = mongoose.model('Tasks', tasksSchema);
+var Task = mongoose.model('Task', TaskSchema);
+module.exports = Task;
