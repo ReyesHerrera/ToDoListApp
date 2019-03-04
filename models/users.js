@@ -19,6 +19,11 @@ const UserSchema = new Schema({
     required: true,
     trim: true
   },
+  password: {
+    type: String,
+    required: true,
+    trim: true
+  }
   createdDate: {
     type: String,
     default: moment(new Date()).format("MMM DD, YYYY") //"Day, 5PM 18"
@@ -27,6 +32,16 @@ const UserSchema = new Schema({
     type: ObjectId,
     ref: 'Task'
   }
+});
+
+UserSchema.pre('save', function(next) {
+  var user = this;
+  bcrypt.hash(user.password, 10, function(err, hash) {
+    if (err) throw err;
+    user.password = hash;
+    console.log("Password hashed and user saved.");
+    next();
+  });
 });
 
 var User = mongoose.model('User', UserSchema);
