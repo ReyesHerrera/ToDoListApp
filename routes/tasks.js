@@ -60,7 +60,7 @@ router.post('/',
       //res.render('tasks', { title: 'Task Yourself' });
 });
 
-=======
+
 ///DOESNOTWORK?!!!
 var express = require('express');
 var router = express.Router();
@@ -158,5 +158,5 @@ router.post('/add', function(req, res){
     });
   });
 });
->>>>>>> ranch
+
 module.exports = router;
