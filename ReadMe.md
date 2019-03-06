@@ -23,3 +23,6 @@ Our application will be a ToDo list app. The ToDo list app is a tool to help stu
 16.	User can color code tasks.
 17.	User can mark task complete.
 18.	User can unmark task to not complete.
+
+If We have Time 
+19. Use passport google oauth as an option for log in.
