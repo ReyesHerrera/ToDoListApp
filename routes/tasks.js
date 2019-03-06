@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var express = require('express');
 var mongoose = require('mongoose');
 var { body, validationResult } = require('express-validator/check');
