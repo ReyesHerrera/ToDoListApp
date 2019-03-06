@@ -10,9 +10,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Passport Config
+require('./config/passport')(passport);
+
 
 //DB Config
-var db = require('./config/keys').mongoURI
+var db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(db,{ useNewUrlParser: true })
