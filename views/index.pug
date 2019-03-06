@@ -1,4 +1,8 @@
 extends layout
 
 block content
-  p Welcome to #{title}
+  h1 #{title}
+  ul.list-group
+    each task, i in tasks
+        li.list-group-item
+            a(href="/task/"+task.id)= tasks.title
