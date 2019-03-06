@@ -1,9 +1,27 @@
 #!/usr/bin/env node
 
 /**
+ * DB mongoose dependencies.
+ */
+const dotenv = require('dotenv');
+dotenv.config();
+const uri = process.env.MONGODB_URI;
+const mongoose = require('mongoose');
+const fs = require('fs');
+
+mongoose.connect(uri, { useNewUrlParser: true, dbName: 'Test-Cluster' });
+mongoose.Promise = global.Promise;
+mongoose.connection
+  .on('connected', () => {
+    console.log('Mongoose connection open on ${uri}');
+  })
+  .on('error', (err) => {
+    console.log('Connection error: ${err.message}');
+  });
+
+/**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('todolistapp:server');
 var http = require('http');

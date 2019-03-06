@@ -3,24 +3,30 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "watch": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
     "express": "~4.16.0",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
     "http-errors": "~1.6.2",
+    "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0",
     "pug": "^2.0.3"
   },
   "devDependencies": {
-    "colors.css": "^3.0.0"
+    "colors.css": "^3.0.0",
+    "nodemon": "^1.18.10"
   }
 }
