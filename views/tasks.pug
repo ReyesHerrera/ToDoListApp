@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  -data = data || {}
+
+  if errors
+    ul.task-errors
+      for error in errors
+        li= error.msg
+
+  form(action="." method="POST" class="task-addition")
+  label(for="taskName" class="task-addition") Task name:
+  br
+  input(
+    type="text"
+    id="taskName"
+    name="taskName"
+    class="form-control"
+    value=data.taskName
+  )
+  br
+
+  label(for="taskDateDue" class="task-addition") Task due:
+  br
+  input(
+    type="text"
+    id="taskDateDue"
+    name="taskDateDue"
+    class="form-control"
+    value=data.taskDateDue
+  )
+  br
+
+  label(for="taskContent" class="task-addition") Description:
+  br
+  input(
+    type="text"
+    id="taskContent"
+    name="taskContent"
+    class="form-control"
+    value=data.taskContent
+  )
+  br
+
+  input(
+    type="submit"
+    value="Submit"
+    class="btn-submit-task"
+    )
