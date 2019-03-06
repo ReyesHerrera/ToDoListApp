@@ -140,6 +140,10 @@ a {
   margin: 0 0 2rem;
 }
 
+label {
+  color: #ffffff;
+}
+
 footer p {
   float: right;
   color: #be4f0c;
