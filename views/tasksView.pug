@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  p Welcome to #{title}
+
+  if tasks.length
+    table.listing-table.table-dark.table-striped
+      tr
+        th Task
+        th Description
+      each task in tasks
+        tr
+          td= task.taskName
+          td= task.taskContent
+  else
+    p No tasks yet!
