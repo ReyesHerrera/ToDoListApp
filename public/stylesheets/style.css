@@ -1,14 +1,14 @@
 header {
   background: #FF5A09;
-  height: 150px;
-  width: 99%;
+  height: 250px;
+  width: 250px;
   margin: 0 auto;
   padding: 15px;
 }
 
 header img {
-  max-width: 150px;
-  margin-right: 600px;
+  max-width: 200px;
+  padding: auto;
 }
 
 header a.button {
@@ -17,10 +17,11 @@ header a.button {
   color: #be4f0c;
   padding: 10px;
 }
+
 .container {
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
+  width: 600px;
+  height: 800px;
   background-color: #FF5A09;
   border-radius: 3px;
 }
@@ -31,11 +32,18 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-main{
+main {
   background: #393939;
-  width:99%;
-  float: left;
-  padding: 15px;
+  width:90%;
+  padding: 10px;
+  margin: 5px 10px auto 20px;
+}
+
+footer {
+  background: #393939;
+  margin-top: 210px;
+  clear: both;
+  height: 15px;
 }
 
 /*          task form           */
@@ -56,6 +64,7 @@ main{
 
 .form-task .btn {
   flex: 1 0 100%;
+  margin: 10px;
 }
 
 .task-errors {
@@ -77,6 +86,10 @@ main{
   font-weight: bold;
 }
 
+.form-control {
+  margin: 10px;
+}
+
 /*          task list table     */
 .listing-table {
   width: 100%;
@@ -96,6 +109,10 @@ main{
 .listing-table td:first-child,
 .listing-table th:first-child {
   border-right: 1px solid #666;
+}
+
+.btn-submit-task {
+  margin: 10px;
 }
 
 /*          TYPOGRAPHY          */
@@ -121,4 +138,9 @@ a {
 .listing-reg h1 {
   text-align: center;
   margin: 0 0 2rem;
+}
+
+footer p {
+  float: right;
+  color: #be4f0c;
 }

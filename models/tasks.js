@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
+
 var moment = require('moment');
+var now = moment(new Date()).format("MMM DD, YYYY");
 
 
 const TaskSchema = new Schema({
@@ -16,15 +18,20 @@ const TaskSchema = new Schema({
   },
   taskDateEntered: {
     type: String,
-    default: moment(new Date()).format("MMM DD, YYYY") //"Sun, 3PM"
+    default: now //"Sun, 3PM"
   },
   taskDateDue: {
-    type: Date
+    type: String,
+    default: moment().add(7, 'days').format("MMM DD, YYYY") // add 7 days from now
   },
   taskContent: {
     type: String,
     trim: true,
     default: "No description provided."
+  },
+  priority: {
+    type: String,
+    require: true
   }
 });
 
