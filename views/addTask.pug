@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1 #{title}
+    form( method='POST', action= '/tasks/add')
+        #form-group
+            label Tast Name:
+            input.form-control(name='taskName', type='text')
+        #form-group
+            label Priority:
+            input.form-control(name='priority', type='text')
+        #form-group
+            label Content:
+            textarea.form-control(name='content', )
+        #form-group
+            label Due Date:
+            input.form-control(name='duedate', type='text')
+        br
+        input.btn.btn-primary(type='submit', value='Submit')
