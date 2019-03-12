@@ -4,18 +4,29 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   
-  
   div(class="wrapper")
   
     nav
         ul
             li
-                a(href="index.pg") Log In Page
+                a(href="index.pug") Log In Page
             li 
                 a(href ="addTask.pug") Add Tasks
             li
                 a(href="deleteTask.pug") Delete a Task
             li
                 a(href ="updateTask.pug") Update a Task
+            
+div(class="wrapper")
+    .container.Register
+    a.button REGISTER! 
+        //to link to our registration page
+        a(href="register.pug")
+
+    .cotainer.LogIn
+    a.button LOG IN!
+        //to link with login page
+        a(href="logIn.pug")
+
     
 block content

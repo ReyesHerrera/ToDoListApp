@@ -1,21 +1,19 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  
-  
-  div (class="wrapper")
-  
-    nav
-        ul
-            li
-                a(href="index.pug") Log In Page
-            li 
-                a(href = "addTasks.pug") Add Tasks
-            li
-                a(href="deleteTask.pug") Delete a Task
-            li
-                a(href ="updateTask.pug") Update a Task
-    
-block content
+extends layout 
+
+block content 
+    h1 #{title}
+    form( method='POST', action= '/tasks/edit/'+task._id)
+        #form-group
+            label Tast Name:
+            input.form-control(name='taskName', type='text', value=task.taskName)
+        #form-group
+            label Priority:
+            input.form-control(name='priority', type='text', value=task.priority)
+        #form-group
+            label Content:
+            textarea.form-control(name='content', ) task.content
+        #form-group
+            label Due Date:
+            input.form-control(name='duedate', type='text', value=task.duedate)
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h1= tasks.taskName
+    h3  Content #{task.content}
+    p= tasks.duedate
+    p= tasks.priority
+    hr
+    a.btn.btn-default(href='/tasks/edit/'+task._id) Edit 
+    a.btn.btn-danger.delete-task(href='#',data-id=task._id) Delete
