@@ -5,7 +5,7 @@ var moment = require('moment');
 var bcrypt = require('bcrypt');
 
 
-const UserSchema = new Schema({
+const UserSchema = new Mongoose.Schema({
   firstName: {
     type: String,
     required: true
@@ -30,7 +30,7 @@ const UserSchema = new Schema({
   },
   tasks: {
     type: ObjectId,
-    ref: 'Task'
+    task: [TaskSchema]
   }
 });
 
@@ -44,5 +44,9 @@ const UserSchema = new Schema({
 //   });
 // });
 
-var User = mongoose.model('User', UserSchema);
+UserSchema.methods.greet = function() {
+  return 'Hello, ' + this.name;
+};
+
+var User = mongoose.model('User', UserSchema, 'user');
 module.exports = User;

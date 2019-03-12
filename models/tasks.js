@@ -6,7 +6,7 @@ var moment = require('moment');
 var now = moment(new Date()).format("MMM DD, YYYY");
 
 
-const TaskSchema = new Schema({
+const TaskSchema = new Mongoose.Schema({
   taskAuthor: {
     type: ObjectId,
     ref: "User"
@@ -35,5 +35,5 @@ const TaskSchema = new Schema({
   }
 });
 
-var Task = mongoose.model('Task', TaskSchema);
+var Task = mongoose.model('Task', TaskSchema, 'task');
 module.exports = Task;
