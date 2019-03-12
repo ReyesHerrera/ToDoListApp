@@ -1,6 +1,4 @@
 //import node libraries
-//more notes
-//morenoters
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +6,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
 // req schemas from models dir
 var tasksModel = require('./models/tasks');
@@ -23,14 +20,34 @@ var tasksViewRouter = require('./routes/tasksView');
 //create app
 var app = express();
 
-//DB Config
-// var db = require('./config/keys').mongoURI
+const MongoClient = require('mongodb').MongoClient;
 
-// Connect to MongoDB
-// mongoose.connect(db,
-//   { useNewUrlParser: true })
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
+const uri = "mongodb+srv://Han:p%40ssw0rd@test-cluster-ohp2e.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+//DB Config
+// const MongoClient = require('mongodb').MongoClient;
+//
+// // replace the uri string with your connection string.
+// const uri = "mongodb+srv://Han:p%40ssw0rd@test-cluster-ohp2e.mongodb.net/test?retryWrites=true"
+// MongoClient.connect(uri, function(err, client) {
+//   if(err){
+//     console.log('Error occurred while connecting to MongoDB Atlas...', err);
+//  } else {
+//    const db = client.db("Test-Cluster")
+//    db.collection("ToDoListApp", function(err, collection){
+//      collection.find().toArray(function(err, res){
+//        callback(res)
+//      });
+//    });  // perform actions on the collection object
+//  db.close();
+// }
+// });
 
 
 // view engine setup
@@ -47,7 +64,6 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 
 //Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
