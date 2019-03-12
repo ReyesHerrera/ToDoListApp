@@ -5,19 +5,37 @@
  */
 const dotenv = require('dotenv');
 dotenv.config();
-const uri = process.env.MONGODB_URI;
 const mongoose = require('mongoose');
+// const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
+const uri = process.env.MONGODB_URI;
+// const client = new MongoClient(uri, { useNewUrlParser: true });
 
-mongoose.connect(uri, { useNewUrlParser: true, dbName: 'Test-Cluster' });
+
+// mongoose.connect(uri, { useNewUrlParser: true, dbName: 'Test-Cluster' });
+mongoose.connect(uri, {
+    keepAlive: 1,
+    useNewUrlParser: true,
+    dbName: 'ToDo'
+});
 mongoose.Promise = global.Promise;
 mongoose.connection
   .on('connected', () => {
-    console.log('Mongoose connection open on ${uri}');
+    console.log('Mongoose connection open on', uri);
   })
   .on('error', (err) => {
-    console.log('Connection error: ${err.message}');
+    console.log('Connection error: ', err.message);
   });
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://admin:pw0rd@todo-wrmew.mongodb.net/test?retryWrites=true";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
 
 /**
  * Module dependencies.
