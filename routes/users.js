@@ -41,19 +41,19 @@ router.post('/register', function(req, res){
         password:password
       });
 
-      bcrypt.getSalt(10,function(err, salt){
+      bcrypt.genSalt(10,function(err, salt){
         bcrypt.hash(newUser.password, salt, function(err,hash){
-          if(error){
+          if(err){
             console.log(err);
           }
           newUser.password = hash;
           newUser.save(function(err){
-            if(error){
+            if(err){
               console.log(err);
               return;
             }else{
               req.flash('Success', 'Welcome to be a new member ');
-              req.redirect('/user/login');
+              req.redirect('/users/login');
             }
           });
         });
