@@ -45,7 +45,7 @@ const UserSchema = new Mongoose.Schema({
 // });
 
 UserSchema.methods.greet = function() {
-  return 'Hello, ' + this.name;
+  return 'Hello, ' + this.firstName;
 };
 
 var User = mongoose.model('User', UserSchema, 'user');
