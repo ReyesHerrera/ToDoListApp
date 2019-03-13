@@ -1,59 +1,153 @@
+/*
 header {
-    background: #FF5A09;
-    height: 150px;
-    width: 99%;
-    margin: 0 auto;
-    padding: 15px;
+  background: #FF5A09;
+  height: 50px;
+  margin: 0 auto;
+  padding: 15px;
 }
 
 header img {
-    max-width: 150px;
-    margin-right: 600px;
+  max-width: 200px;
+  padding: auto;
 }
 
 header a.button {
-    clear:left;
-    background: #393939;
-    color: #be4f0c;
-    padding: 10px;
+  clear:left;
+  background: #393939;
+  color: #be4f0c;
+  padding: 10px;
 }
-.constainer {
+*/
+
+/*
+.container {
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background-color: ##FF5A09;
+  width: 600px;
+  height: 800px;
+  background-color: #FF5A09;
   border-radius: 3px;
 }
+*/
 
 body {
-    background: #393939;
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #393939;
+  padding: 40px 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-main{
-    background: #393939;
-    width:99%;
-    float: left;
-    padding: 15px;
+main {
+  background: #393939;
+  width:90%;
+  padding: 10px;
+  margin: 5px 10px auto 20px;
+}
+
+footer {
+  background: #393939;
+  margin-top: 210px;
+  clear: both;
+  height: 15px;
+}
+
+/*          task form           */
+.form-task {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-task {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-task input {
+  width: 100%;
+  margin: 0 0 10px;
+}
+
+.form-task .btn {
+  flex: 1 0 100%;
+  margin: 10px;
+}
+
+.task-errors {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  color: #333;
+  font-size: 1.2rem;
+  display: table;
+}
+
+.task-errors li {
+  margin: 0 0 1rem;
+}
+
+.task-errors li:before {
+  content: "! Error: ";
+  color: #f00;
+  font-weight: bold;
+}
+
+.form-control {
+  margin: 10px;
+}
+
+/*          task list table     */
+.listing-table {
+  width: 100%;
+}
+
+.listing-table th,
+.listing-table td {
+  padding: 10px;
+  border-bottom: 1px solid #666;
+}
+
+.listing-table th {
+  background: #000;
+  color: #fff;
+}
+
+.listing-table td:first-child,
+.listing-table th:first-child {
+  border-right: 1px solid #666;
+}
+
+.btn-submit-task {
+  margin: 10px;
 }
 
 /*          TYPOGRAPHY          */
 
 h1, h2, h3 {
-    font-size: 30px;
-    color: #FF5A09;
+  font-size: 30px;
+  color: #FF5A09;
 }
 
 h4, h5, h6 {
-    font-size: 15px;
-    color: #be4f0c;
+  font-size: 15px;
+  color: #be4f0c;
 }
 
 p {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 a {
-    color: #be4f0c;
+  color: #be4f0c;
  }
+
+.listing-reg h1 {
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+label {
+  color: #ffffff;
+}
+
+footer p {
+  float: right;
+  color: #be4f0c;
+}
