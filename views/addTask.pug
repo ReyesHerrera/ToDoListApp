@@ -2,9 +2,12 @@ extends layout
 
 block content 
     h1 #{title}
-    form( method='POST', action= '/tasks/add')
+    form( method='POST', action='/tasks/add')
         #form-group
-            label Tast Name:
+            label Task Author:
+            input.form-control(name='taskAuthor', type='text')
+        #form-group
+            label Task Name:
             input.form-control(name='taskName', type='text')
         #form-group
             label Priority:
@@ -12,6 +15,9 @@ block content
         #form-group
             label Content:
             textarea.form-control(name='content', )
+        #form-group
+            label Date Entered:
+            input.form-control(name='taskDateEntered', type='text')
         #form-group
             label Due Date:
             input.form-control(name='duedate', type='text')
