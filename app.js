@@ -9,16 +9,16 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 const config = require('./config/database');
-const MongoClient = require('mongodb', {useNewURLParser: true}).MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const cors = require('cors');
 const errorHandler = require('errorhandler');
- const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
 
 // using mongodb for data base
- mongoose.connect(config.database, {useNewURLParser : true});
+ mongoose.connect(config.database, {useNewUrlParser: 'true'});
  let db = mongoose.connection;
  // checking connection to server
  db.once('open', function(){
@@ -121,102 +121,6 @@ app.get('/', function(req, res) {
   });
 });
 
-//
-////GET one task
-//app.get('/task/:id', function(req, res){
-//  Task.findById(req.params.id, function(err, task){
-//    res.render('tasks',{
-//      tasks:tasks
-//    });
-//  });
-//});
-//
-////router for add
-//app.get('/tasks/add', function(req, res) {
-//  res.render('addTask', {
-//    title: 'Add Task'
-//  });
-//});
-//
-//
-////post route for add submit form
-//app.post('/tasks/add', function(req, res){
-//  req.checkBody('taskName', 'task name is required').notEmpty();
-//  req.checkBody('priority', 'priority  is required').notEmpty();
-//  req.checkBody('content', 'content is required').notEmpty();
-//  req.checkBody('duedate', 'due date is required').notEmpty();
-//  req.checkBody('taskDateEntered', 'this is automatic').notEmpty();
-//
-//  //Error for validations
-//  let errors = req.validationErrors();
-//  if (errors){
-//    res.render('addTask',{
-//      title: 'Add Task',
-//      errors:errors
-//    });
-//  } else {
-//  let tasks = new Tasks();
-//  tasks.taskName = req.body.taskName;
-//  tasks.priority = req.body.priority;
-//  tasks.content = req.body.content;
-//  tasks.duedate = req.body.duedate;
-//  }
-//  //console.log('Its working');
-//  //return;
-//
-//  tasks.save(function(err){
-//    if(err){
-//      console.log(err);
-//      return;
-//    } else {
-//      req.flash('success', 'Task was added');
-//      res.redirect('/');
-//    }
-//  });
-//});
-//
-////Edit form for task
-//app.get('/task/edit/:id', function(req, res){
-//  Task.findById(req.params.id, function(err, task){
-//    res.render('updateTask',{
-//      title:'updateTask',
-//      task:task
-//    });
-//  });
-//});
-//
-////POST route for update submit form
-//app.post('/tasks/edit/:id', function(req, res){
-//  let tasks = {};
-//  tasks.taskName = req.body.taskName;
-//  tasks.priority = req.body.priority;
-//  tasks.content = req.body.content;
-//  tasks.duedate = req.body.duedate;
-//
-//  let query = {_id:req.params.id}
-//
-//  Tasks.update(query, tasks, function(err){
-//    if(err){
-//      console.log(err);
-//      return;
-//    } else {
-//      req.flash('success', 'Task was updated');
-//      res.redirect('/');
-//     }
-//   });
-//});
-//
-////delete task
-// app.delete('/tasks/:id', function(rep, res){
-//    let query = {_id:req.params.id}
-//
-//    Tasks.remove(query, function(err){
-//      if(err){
-//        console.log(err);
-//      }
-//      res.send('successfull deletion');
-//    });
-// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
