@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
@@ -10,25 +9,18 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 const config = require('./config/database');
-
 const MongoClient = require('mongodb', {useNewURLParser: true}).MongoClient;
+const cors = require('cors');
+const errorHandler = require('errorhandler');
+ const mongoose = require('mongoose');
 
-//const uri = "mongodb+srv://Han:p%40ssw0rd@test-cluster-ohp2e.mongodb.net/test?retryWrites=true";
-//const client = new MongoClient(uri, { useNewUrlParser: true });
-//client.connect(err => {
-//  const collection = client.db("test").collection("devices");
-//  console.log('Are we connected?');
-//  // perform actions on the collection object
-//  client.close();
-//});
+// Configure mongoose's promise to global promise
+mongoose.promise = global.Promise;
 
-
-//using mongodb for data base
- const mongoose=require('mongoose');
- mongoose.connect(config.database);
+// using mongodb for data base
+ mongoose.connect(config.database, {useNewURLParser : true});
  let db = mongoose.connection;
-
- //checking connection to server
+ // checking connection to server
  db.once('open', function(){
      console.log('We are connected to MongoDB');
  });
@@ -37,23 +29,28 @@ const MongoClient = require('mongodb', {useNewURLParser: true}).MongoClient;
      console.log(err);
  });
 
+ // inititalizing
+ var app = express();
 
-//might have to consolidate into one file in routes
-//var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var navbarRouter = require('./routes/navbar');
+// ROUTES
+let indexRouter = require('./routes/index');
+let tasksRouter = require('./routes/tasks');
+let usersRouter = require('./routes/users');
+app.use('/', indexRouter);
+app.use('/tasks', tasksRouter);
+app.use('/users', usersRouter);
 
-//inititalizing
-var app = express();
 
-//bringing models for Tasks
+// models
 let Tasks = require('./models/tasks');
+let Users = require('./models/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//add middleware libraries
+// add middleware libraries
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -220,12 +217,6 @@ app.get('/', function(req, res) {
 //      res.send('successfull deletion');
 //    });
 // });
-
-//routes for users 
-let tasks = require('./routes/tasks');
-let users = require('./routes/users');
-app.use('/tasks', tasks);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

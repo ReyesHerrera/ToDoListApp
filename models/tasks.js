@@ -7,8 +7,9 @@ var now = moment(new Date()).format("MMM DD, YYYY");
 //create database structure for tasks table
 let tasksSchema = mongoose.Schema({
     taskAuthor:{
-        type: String,
-        require: false
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
     },
     taskName:{
         type: String,
@@ -29,7 +30,7 @@ let tasksSchema = mongoose.Schema({
     taskDateEntered:{
         type: String,
         default: now //"Sun, 3PM"
-    },
+    }
 });
 
 let Tasks = module.exports = mongoose.model('Tasks', tasksSchema);
