@@ -1,12 +1,13 @@
 let mongoose = require('mongoose');
 var moment = require('moment');
+var User = require('./users');
 
 var now = moment(new Date()).format("MMM DD, YYYY");
 
 
 //create database structure for tasks table
 let tasksSchema = mongoose.Schema({
-    taskAuthor:{
+    _userId:{
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User'

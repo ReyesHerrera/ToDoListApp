@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 var moment = require('moment');
+var Tasks = require('./tasks');
+var Token = require('./token');
 
 
 //Schema for user
@@ -26,7 +28,8 @@ const userSchema = mongoose.Schema({
   },
   isVerified: {
 	  type: Boolean,
-	  default: false },
+	  default: false
+  },
   password: {
     type: String,
     required: true,
@@ -39,25 +42,5 @@ const userSchema = mongoose.Schema({
     default: moment(new Date()).format("MMM DD, YYYY") //day, 5pm 18
   }
 });
-
-userSchema.methods.generateJWT = function() {
-  const today = new Date();
-  const expirationDate = new Date(today);
-  expirationDate.setDate(today.getDate() + 60);
-
-  return jwt.sign({
-    email:this.email,
-    id: this._id,
-    exp: parseInt(expirationDate.getTime() / 1000, 10),
-  }, 'secret');
-}
-
-userSchema.methods.toAuthJSON = function() {
-  return {
-    _id: this._id,
-    email: this.email,
-    token: this.generateJWT(),
-  };
-};
 
 const User =  module.exports = mongoose.model('User', userSchema);

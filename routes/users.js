@@ -3,6 +3,7 @@ var router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 var nodemailer = require("nodemailer");
+var crypto = require('crypto');
 var app = express();
 
 let User = require('../models/users');
@@ -36,9 +37,9 @@ router.post('/register', function(req, res) {
   // check if account exists
   User.findOne({ email: req.body.email }, function(err, user) {
     // check if user exists
-    if (user) return res.status(400).send({ msg: 'That email address is associated with an account.'});
+    if (user) return res.status(400).send('That email address is associated with an account.');
     // create and save user
-    let newUser = new User({
+    user = new User({
       firstname:firstname,
   	  lastname:lastname,
       email:email,
@@ -48,11 +49,11 @@ router.post('/register', function(req, res) {
     });
 
   	bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(newUser.password, salt, function(err, hash) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
         if(err){ console.log(err); }
 
-        newUser.password = hash;
-        newUser.save(function(err){
+        user.password = hash;
+        user.save(function(err){
           if(err){ return res.status(500).send({ msg: err.message }); }
           // verification token
           var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
@@ -62,9 +63,9 @@ router.post('/register', function(req, res) {
             // email user to verify
             var transporter = nodemailer.createTransport({
               service: 'Gmail',
-              auth: { user: 'thetodolistapp', pass: 'appdev320'} });
+              auth: { user: 'thetodolistapp@gmail.com', pass: 'appdev320'} });
             var mailOptions = {
-              from: 'no-reply@thetodolistapp.com',
+              from: 'thetodolistapp@gmail.com',
               to: user.email,
               subject: 'Account Verification Token',
               text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
@@ -72,14 +73,14 @@ router.post('/register', function(req, res) {
             transporter.sendMail(mailOptions, function (err) {
               if (err) { return res.status(500).send({ msg: err.message });}
               res.status(200).send('A verification email has been sent to ' + user.email + '.');
+
+            req.flash('success','You are now registered. Please check your email for confirmation and log in whenever!');
+            res.redirect('/users/login');
             });
           });
         });
       });
     });
-
-    req.flash('success','You are now registered. Please check your email for confirmation and log in whenever!');
-    res.redirect('/users/login');
   });
 });
 
