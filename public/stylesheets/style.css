@@ -176,7 +176,7 @@ footer {
 /*          TYPOGRAPHY          */
 
 h1, h2, h3 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #ffffff;
   font-family: 'Margarine', cursive;
 }
@@ -188,14 +188,19 @@ h4, h5, h6 {
 }
 
 nav h1 {
- font-size: 1rem;
+ font-size: 2rem;
  font-family: 'Margarine', cursive;
 }
 
-p {
-  color: #ffffff;
-  font-size: .875rem;
+nav a {
+  font-size: 1.2rem;
   font-family: 'Oswald', sans-serif;
+  letter-spacing: .5rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #ffffff;
 }
 
 a {
@@ -207,10 +212,10 @@ a {
   margin: 0 0 2rem;
 }
 
-label {
+label, p {
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
-  font-size: .875rem;
+  font-size: 1rem;
   letter-spacing: .05rem;
 }
 
