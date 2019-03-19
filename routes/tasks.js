@@ -30,15 +30,12 @@ router.post('/add', function(req, res){
       title: 'Add Task',
       errors:errors
     });
-  } else {
+  }
 	let tasks = new Tasks();
 	tasks.taskName = req.body.taskName;
 	tasks.priority = req.body.priority;
 	tasks.content = req.body.content;
 	tasks.duedate = req.body.duedate;
-
-  //console.log('Its working');
-  //return;
 
   	tasks.save(function(err){
       if(err){
@@ -49,7 +46,6 @@ router.post('/add', function(req, res){
         res.redirect('/');
       }
     });
-  }
 });
 
 //Edit form for task
@@ -91,7 +87,7 @@ router.post('/edit/:id', function(req, res){
       if(err){
         console.log(err);
       }
-      res.send('successfull deletion');
+      res.send('successful deletion');
     });
  });
 
