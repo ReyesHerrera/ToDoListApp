@@ -18,19 +18,20 @@ var router = express.Router();
 mongoose.promise = global.Promise;
 
 // using mongodb for data base
- mongoose.connect(config.database, {useNewUrlParser: 'true'});
- let db = mongoose.connection;
- // checking connection to server
- db.once('open', function(){
-     console.log('We are connected to MongoDB');
- });
- //checking for DB errors
- db.on('error', function(err){
-     console.log(err);
- });
+mongoose.connect(config.database, {useNewUrlParser: 'true'});
+mongoose.set('useCreateIndex', true);
+let db = mongoose.connection;
+// checking connection to server
+db.once('open', function(){
+   console.log('We are connected to MongoDB');
+});
+//checking for DB errors
+db.on('error', function(err){
+   console.log(err);
+});
 
- // inititalizing
- var app = express();
+// inititalizing
+var app = express();
 
 // models
 let Tasks = require('./models/tasks');
