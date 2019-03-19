@@ -48,6 +48,15 @@ router.post('/add', function(req, res){
     });
 });
 
+/* GET taskview page.*/
+router.get('/view', function(req, res) {
+  Task.find()
+    .then((tasks) => {
+      res.render('tasksView', { title: 'TaskTaskTask View', tasks });
+    })
+    .catch(() => { res.send('Sorry! Something went wrong.'); });
+});
+
 //Edit form for task
 router.get('/edit/:id', function(req, res){
   Tasks.findById(req.params.id, function(err, task){

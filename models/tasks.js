@@ -1,6 +1,9 @@
 let mongoose = require('mongoose');
 var moment = require('moment');
 var User = require('./users');
+User.find().exec(function( err, tasks) {
+  if (err) return handleError(err);
+});
 
 var now = moment(new Date()).format("MMM DD, YYYY");
 

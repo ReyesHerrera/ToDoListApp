@@ -74,7 +74,7 @@ router.post('/register', function(req, res) {
               if (err) { return res.status(500).send({ msg: err.message });}
               res.status(200).send('A verification email has been sent to ' + user.email + '.');
 
-            req.flash('success','You are now registered. Please check your email for confirmation and log in whenever!');
+            req.flash('success','You are now registered. Please check your email for confirmation and log in!');
             res.redirect('/users/login');
             });
           });
