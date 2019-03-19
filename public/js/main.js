@@ -1,16 +1,16 @@
 $(document).ready(function(){
-  $('.delete-article').on('click', function(e){
+  $('.delete-task').on('click', function(e){
     $target = $(e.target);
-    var id = $target.attr('data-id');
+    const id = $target.attr('data-id');
     $.ajax({
       type:'DELETE',
-      url:'/task/' + id,
+      url:'/tasks/' +id,
       success: function(respnse){
         alert('deleted task!');
-        window.location.href = '/';
+        window.location.href='/';
       },
       error: function(err){
-        console.log();
+        console.log(err);
       }
     });
   });

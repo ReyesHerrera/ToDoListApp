@@ -1,7 +1,8 @@
+/*
 header {
   background: #FF5A09;
-  height: 250px;
   width: 250px;
+  height: 50px;
   margin: 0 auto;
   padding: 15px;
 }
@@ -17,7 +18,9 @@ header a.button {
   color: #be4f0c;
   padding: 10px;
 }
+*/
 
+/*
 .container {
   margin: 0 auto;
   width: 600px;
@@ -25,6 +28,7 @@ header a.button {
   background-color: #FF5A09;
   border-radius: 3px;
 }
+*/
 
 body {
   background: #393939;
