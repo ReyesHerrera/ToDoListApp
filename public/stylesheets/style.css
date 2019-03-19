@@ -20,7 +20,16 @@ body {
 nav {
   padding: 5px;
   margin: 5px;
-  list-style-type: none;
+}
+
+nav ul {
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px;
 }
 
 nav a.button {
@@ -155,21 +164,26 @@ footer {
 /*          TYPOGRAPHY          */
 
 h1, h2, h3 {
-  font-size: 30px;
-  color: #be4f0c;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-family: 'Margarine', cursive;
 }
 
 h4, h5, h6 {
-  font-size: 15px;
+  font-size: 1rem;
   color: #be4f0c;
+  font-family: 'Margarine', cursive;
 }
 
 nav h1 {
  font-size: 1rem;
+ font-family: 'Margarine', cursive;
 }
 
 p {
   color: #ffffff;
+  font-size: .875rem
+  font-family: 'Oswald', sans-serif;
 }
 
 a {
@@ -188,4 +202,6 @@ label {
 footer p {
   float: right;
   color: #be4f0c;
+  font-size: .875rem;
+  font-family: 'Margarine', cursive;
 }
