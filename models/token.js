@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 var moment = require('moment');
+var User = require('./users');
 
 var now = moment(new Date()).format("MMM DD, YYYY");
 
