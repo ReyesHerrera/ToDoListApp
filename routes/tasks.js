@@ -18,8 +18,6 @@ router.get('/add', function(req, res) {
 //post route for add submit form
 router.post('/add', function(req, res){
   req.checkBody('taskName', 'task name is required').notEmpty();
-  req.checkBody('content', 'content is required').notEmpty();
-  req.checkBody('duedate', 'due date is required').notEmpty();
 
   //Error for validations
   let errors = req.validationErrors();
