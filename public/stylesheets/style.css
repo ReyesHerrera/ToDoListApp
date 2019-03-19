@@ -11,7 +11,19 @@ header img {
   padding: auto;
 }
 
-header a.button {
+body {
+  background: #393939;
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  padding: 5px;
+  margin: 5px;
+  list-style-type: none;
+}
+
+nav a.button {
   clear:left;
   background: #393939;
   color: #be4f0c;
@@ -19,31 +31,25 @@ header a.button {
 }
 
 .container {
-  margin: 0 auto;
-  width: 600px;
-  height: 800px;
+  width: 90%;
+  height: 100%;
   background-color: #FF5A09;
-  border-radius: 3px;
-}
-
-body {
-  background: #393939;
-  padding: 40px 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 15px;
+  margin: auto;
+  padding: 10px;
 }
 
 main {
-  background: #393939;
-  width:90%;
-  padding: 10px;
-  margin: 5px 10px auto 20px;
+  width:80%;
+  height: 90%;
+  padding: 20px;
+  margin: 10px;
 }
 
 footer {
   background: #393939;
-  margin-top: 210px;
   clear: both;
-  height: 15px;
+  margin: 2px;
 }
 
 /*          task form           */
@@ -88,6 +94,7 @@ footer {
 
 .form-control {
   margin: 10px;
+  padding: 10px;
 }
 
 /*          task list table     */
@@ -149,12 +156,16 @@ footer {
 
 h1, h2, h3 {
   font-size: 30px;
-  color: #FF5A09;
+  color: #be4f0c;
 }
 
 h4, h5, h6 {
   font-size: 15px;
   color: #be4f0c;
+}
+
+nav h1 {
+ font-size: 1rem;
 }
 
 p {
