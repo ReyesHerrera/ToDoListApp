@@ -4,7 +4,7 @@ const router = express.Router();
 //task  Model
 let Tasks = require('../models/tasks');
 // User Model
-let User = require('../models/user');
+let User = require('../models/users');
 
 //add route
 //router for add
@@ -36,7 +36,7 @@ router.post('/add', function(req, res){
 	tasks.priority = req.body.priority;
 	tasks.content = req.body.content;
 	tasks.duedate = req.body.duedate;
-  
+
   //console.log('Its working');
   //return;
 

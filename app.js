@@ -10,9 +10,9 @@ var session = require('express-session');
 var passport = require('passport');
 const config = require('./config/database');
 const MongoClient = require('mongodb').MongoClient;
-const cors = require('cors');
 const errorHandler = require('errorhandler');
 const mongoose = require('mongoose');
+var router = express.Router();
 
 // Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -32,15 +32,6 @@ mongoose.promise = global.Promise;
  // inititalizing
  var app = express();
 
-// ROUTES
-let indexRouter = require('./routes/index');
-let tasksRouter = require('./routes/tasks');
-let usersRouter = require('./routes/users');
-app.use('/', indexRouter);
-app.use('/tasks', tasksRouter);
-app.use('/users', usersRouter);
-
-
 // models
 let Tasks = require('./models/tasks');
 let Users = require('./models/users');
@@ -50,7 +41,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // add middleware libraries
-app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -121,6 +111,13 @@ app.get('/', function(req, res) {
   });
 });
 
+// ROUTES
+// let indexRouter = require('./routes/index');
+let tasksRouter = require('./routes/tasks');
+let usersRouter = require('./routes/users');
+// app.use('/', indexRouter);
+app.use('/tasks', tasksRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

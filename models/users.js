@@ -1,48 +1,63 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 var moment = require('moment');
-var bcrypt = require('bcrypt');
 
 
-const UserSchema = new Schema({
-  firstName: {
+//Schema for user
+const userSchema = mongoose.Schema({
+  firstname: {
     type: String,
     required: true
   },
-  lastName: {
+  lastname: {
     type: String,
     required: true
   },
   email: {
     type: String,
+    unique: true,
     required: true,
     trim: true
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  isVerified: {
+	  type: Boolean,
+	  default: false },
   password: {
     type: String,
     required: true,
     trim: true
   },
-  createdDate: {
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+  createddate: {
     type: String,
     default: moment(new Date()).format("MMM DD, YYYY") //day, 5pm 18
-  },
-  tasks: {
-    type: ObjectId,
-    ref: 'Task'
   }
 });
 
-// UserSchema.pre('save', function(next) {
-//   var user = this;
-//   bcrypt.hash(user.password, 10, function(err, hash) {
-//     if (err) throw err;
-//     user.password = hash;
-//     console.log("Password hashed and user saved.");
-//     next();
-//   });
-// });
+userSchema.methods.generateJWT = function() {
+  const today = new Date();
+  const expirationDate = new Date(today);
+  expirationDate.setDate(today.getDate() + 60);
 
-var User = mongoose.model('User', UserSchema);
-module.exports = User;
+  return jwt.sign({
+    email:this.email,
+    id: this._id,
+    exp: parseInt(expirationDate.getTime() / 1000, 10),
+  }, 'secret');
+}
+
+userSchema.methods.toAuthJSON = function() {
+  return {
+    _id: this._id,
+    email: this.email,
+    token: this.generateJWT(),
+  };
+};
+
+const User =  module.exports = mongoose.model('User', userSchema);

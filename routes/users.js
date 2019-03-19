@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var nodemailer = require("nodemailer");
+var app = express();
 
-
-let User = require('../models/user');
+let User = require('../models/users');
 
 // Register Form
 router.get('/register', function(req, res){
@@ -12,7 +13,7 @@ router.get('/register', function(req, res){
 });
 
 // Register Proccess
-router.post('/register', function(req, res){
+router.post('/register', function(req, res) {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const email = req.body.email;
@@ -27,43 +28,60 @@ router.post('/register', function(req, res){
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-	
-  let errors = req.validationErrors();
 
-  if(errors){
-    res.render('register', {
-      errors:errors
-    });
-  } else {
+  let errors = req.validationErrors();
+  if(errors){ res.render('register', { errors:errors }); }
+
+  // check if account exists
+  User.findOne({ email: req.body.email }, function(err, user) {
+    // check if user exists
+    if (user) return res.status(400).send({ msg: 'That email address is associated with an account.'});
+    // create and save user
     let newUser = new User({
       firstname:firstname,
-	  lastname:lastname,
+  	  lastname:lastname,
       email:email,
       username:username,
       password:password,
-	  datecreated:datecreated
-
+  	  datecreated:datecreated
     });
 
-	bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(newUser.password, salt, function(err, hash){
-        if(err){
-          console.log(err);
-        }
+  	bcrypt.genSalt(10, function(err, salt){
+      bcrypt.hash(newUser.password, salt, function(err, hash) {
+        if(err){ console.log(err); }
+
         newUser.password = hash;
         newUser.save(function(err){
-          if(err){
-            console.log(err);
-            return;
-          } else {
-            req.flash('success','You are now registered and can log in');
-            res.redirect('/users/login');
-          }
+          if(err){ return res.status(500).send({ msg: err.message }); }
+          // verification token
+          var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+
+          token.save(function (err) {
+            if (err) { return res.status(500).send({ msg: err.message}); }
+            // email user to verify
+            var transporter = nodemailer.createTransport({
+              service: 'Gmail',
+              auth: { user: 'thetodolistapp', pass: 'appdev320'} });
+            var mailOptions = {
+              from: 'no-reply@thetodolistapp.com',
+              to: user.email,
+              subject: 'Account Verification Token',
+              text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
+
+            transporter.sendMail(mailOptions, function (err) {
+              if (err) { return res.status(500).send({ msg: err.message });}
+              res.status(200).send('A verification email has been sent to ' + user.email + '.');
+            });
+          });
         });
       });
     });
-  }
+
+    req.flash('success','You are now registered. Please check your email for confirmation and log in whenever!');
+    res.redirect('/users/login');
+  });
 });
+
 
 // Login Form
 router.get('/login', function(req, res){
@@ -78,13 +96,16 @@ router.post('/login', function(req, res, next){
     failureFlash: true
   })(req, res, next);
 });
-router.post('/confirmation', userController.confirmationPost);
-router.post('/resend', userController.resendTokenPost);
+
+router.post('/confirmation', function(req,res){
+  res.render('confirmation');
+})
+
 // logout
 router.get('/logout', function(req, res){
   req.logout();
   req.flash('success', 'You are logged out');
   res.redirect('/users/login');
-});
+})
 
 module.exports = router;
