@@ -32,11 +32,23 @@ nav li {
   padding: 5px;
 }
 
-nav a.button {
+button {
   clear:left;
   background: #393939;
   color: #be4f0c;
   padding: 10px;
+}
+
+label {
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 100px;
+}
+
+input {
+  display: inline-block;
+  float: left;
 }
 
 .container {
@@ -74,12 +86,12 @@ footer {
 
 .form-task input {
   width: 100%;
-  margin: 0 0 10px;
 }
 
 .form-task .btn {
   flex: 1 0 100%;
   margin: 10px;
+  background: #393939;
 }
 
 .task-errors {
