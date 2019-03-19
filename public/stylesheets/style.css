@@ -32,11 +32,23 @@ nav li {
   padding: 5px;
 }
 
-nav a.button {
+button {
   clear:left;
   background: #393939;
   color: #be4f0c;
   padding: 10px;
+}
+
+label {
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 100px;
+}
+
+input {
+  display: inline-block;
+  float: left;
 }
 
 .container {
@@ -74,12 +86,12 @@ footer {
 
 .form-task input {
   width: 100%;
-  margin: 0 0 10px;
 }
 
 .form-task .btn {
   flex: 1 0 100%;
   margin: 10px;
+  background: #393939;
 }
 
 .task-errors {
@@ -182,7 +194,7 @@ nav h1 {
 
 p {
   color: #ffffff;
-  font-size: .875rem
+  font-size: .875rem;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -197,6 +209,9 @@ a {
 
 label {
   color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+  font-size: .875rem;
+  letter-spacing: .05rem;
 }
 
 footer p {
