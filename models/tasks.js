@@ -16,8 +16,8 @@ let tasksSchema = mongoose.Schema({
         require: true
     },
     priority:{
-        type: String,
-        require: true
+        type: Boolean,
+        default: false
     },
     content:{
         type: String,
