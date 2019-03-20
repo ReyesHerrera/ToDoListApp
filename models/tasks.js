@@ -34,9 +34,9 @@ let tasksSchema = mongoose.Schema({
 });
 
 tasksSchema
-.virtual('url')
-.get(function () {
-  return '/tasks/view/' + this._id;
+  .virtual('url')
+  .get(function () {
+    return '/tasks/view/' + this._id;
 });
 
 let Tasks = module.exports = mongoose.model('Tasks', tasksSchema);
