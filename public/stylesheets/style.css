@@ -64,14 +64,13 @@ input {
 main {
   width:80%;
   height: 90%;
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
 }
 
 footer {
   background: #393939;
   clear: both;
-  margin: 2px;
 }
 
 /*          task form           */
