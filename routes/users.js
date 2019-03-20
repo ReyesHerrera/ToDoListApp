@@ -6,8 +6,13 @@ var nodemailer = require("nodemailer");
 var crypto = require('crypto');
 var app = express();
 
+
+let Token = require('../models/token');//task  Model
+let Tasks = require('../models/tasks');
+var task_controller = require('../controllers/taskController');
+// User Model
 let User = require('../models/users');
-let Token = require('../models/token');
+var user_controller = require('../controllers/userController');
 
 // Register Form
 router.get('/register', function(req, res){

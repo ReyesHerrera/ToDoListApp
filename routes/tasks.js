@@ -3,8 +3,11 @@ const router = express.Router();
 
 //task  Model
 let Tasks = require('../models/tasks');
+var task_controller = require('../controllers/taskController');
 // User Model
 let User = require('../models/users');
+var user_controller = require('../controllers/userController');
+
 
 //add route
 //router for add
