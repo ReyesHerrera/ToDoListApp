@@ -12,7 +12,6 @@ var now = moment(new Date()).format("MMM DD, YYYY");
 let tasksSchema = mongoose.Schema({
     _userId:{
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: 'User'
     },
     taskName:{
