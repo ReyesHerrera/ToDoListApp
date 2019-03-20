@@ -67,9 +67,11 @@ router.post('/register', function(req, res) {
             var mailOptions = {
               from: 'thetodolistapp@gmail.com',
               to: user.email,
-              subject: 'Account Verification Token',
-              text: 'Hello,\n\n' + 'Please verify your ToDo List account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-
+              subject: 'Account Created!',
+              text: 'Hello,\n\n' + 'Thank you for joining the ToDo List community! '
+              \nhttp:\/\/' + req.headers.host + '/login' 
+              //'\/confirmation\/' + token.token + '.\n' };
+            };
             transporter.sendMail(mailOptions, function (err) {
               if (err) { return res.status(500).send({ msg: err.message });}
               res.status(200).send('A verification email has been sent to ' + user.email + '.');
