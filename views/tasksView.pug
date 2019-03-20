@@ -6,8 +6,10 @@ block content
   if tasks.length
     table.listing-table.table-dark.table-striped
       tr
-        th Task
-        th Description
+        th
+          h4 Task
+        th
+          h4 Description
       each task in tasks
         tr
           td= task.taskName
