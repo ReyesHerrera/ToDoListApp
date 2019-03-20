@@ -15,6 +15,7 @@ body {
   background: #393939;
   padding: 15px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ffffff;
 }
 
 nav {
@@ -209,6 +210,10 @@ a {
 .listing-reg h1 {
   text-align: center;
   margin: 0 0 2rem;
+}
+
+table td {
+  text-align: center;
 }
 
 label, p {
