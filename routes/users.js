@@ -68,10 +68,9 @@ router.post('/register', function(req, res) {
               from: 'thetodolistapp@gmail.com',
               to: user.email,
               subject: 'Account Created!',
-              text: 'Hello,\n\n' + 'Thank you for joining the ToDo List community! '
-              \nhttp:\/\/' + req.headers.host + '/login' 
+              text: 'Hello,\n\n' + 'Thank you for joining the ToDo List community! \nhttp:\/\/' + req.headers.host + '/login' };
               //'\/confirmation\/' + token.token + '.\n' };
-            };
+
             transporter.sendMail(mailOptions, function (err) {
               if (err) { return res.status(500).send({ msg: err.message });}
               res.status(200).send('A verification email has been sent to ' + user.email + '.');

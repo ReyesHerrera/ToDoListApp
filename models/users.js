@@ -3,7 +3,6 @@ var moment = require('moment');
 var Tasks = require('./tasks');
 var Token = require('./token');
 
-
 //Schema for user
 const userSchema = mongoose.Schema({
   firstname: {
@@ -42,5 +41,11 @@ const userSchema = mongoose.Schema({
     default: moment(new Date()).format("MMM DD, YYYY") //day, 5pm 18
   }
 });
+
+userSchema
+  .virtual('url')
+  .get(function() {
+    return '/users/' + this._id;
+  });
 
 const User =  module.exports = mongoose.model('User', userSchema);

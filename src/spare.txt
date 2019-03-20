@@ -95,3 +95,9 @@
 //      res.send('successfull deletion');
 //    });
 // });
+
+
+
+#form-group
+label Priority:
+input.form-control(name='priority', type='checkbox' checked=(true===false ? "checked" : undefined))

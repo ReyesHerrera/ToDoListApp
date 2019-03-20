@@ -28,8 +28,9 @@ router.post('/add', function(req, res){
     });
   }
 	let tasks = new Tasks();
+  tasks._userId = User._id;
 	tasks.taskName = req.body.taskName;
-	tasks.priority = req.body.priority;
+	// tasks.priority = req.body.priority;
 	tasks.content = req.body.content;
 	tasks.duedate = req.body.duedate;
 

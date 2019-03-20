@@ -1,9 +1,6 @@
 let mongoose = require('mongoose');
 var moment = require('moment');
 var User = require('./users');
-User.find().exec(function( err, tasks) {
-  if (err) return handleError(err);
-});
 
 var now = moment(new Date()).format("MMM DD, YYYY");
 
@@ -34,6 +31,12 @@ let tasksSchema = mongoose.Schema({
         type: String,
         default: now //"Sun, 3PM"
     }
+});
+
+tasksSchema
+.virtual('url')
+.get(function () {
+  return '/tasks/view/' + this._id;
 });
 
 let Tasks = module.exports = mongoose.model('Tasks', tasksSchema);
