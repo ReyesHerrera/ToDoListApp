@@ -1,4 +1,4 @@
-var Task = require('./models/tasks');
+var Task = require('../models/tasks');
 
 // Display list of all tasks.
 exports.task_list = function(req, res) {
