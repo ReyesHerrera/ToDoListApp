@@ -13,6 +13,10 @@ block content
       each task in tasks
         tr
           td= task.taskName
-          td= task.taskContent
+          td= task.content
+          td
+            button.remove-doc.btn.btn-danger.col-xs-12(data-id="#{tasks._id)") DELETE
+          td
+            button.edit-doc.btn.btn-danger.col-xs-12(data-id="#{tasks._id)") EDIT
   else
     p No tasks yet!

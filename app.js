@@ -120,6 +120,14 @@ let usersRouter = require('./routes/users');
 app.use('/tasks', tasksRouter);
 app.use('/users', usersRouter);
 
+app.post('/tasks/delete', function(req, res, next) {
+   var ObjectId = req.body.ObjectId || req.query.ObjectId;
+
+   tasksSchema.remove({_id: ObjectId}, function(err, res) {
+       if (err) { res.json({"err": err}); } else { res.json({success: true});
+       };
+     });
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

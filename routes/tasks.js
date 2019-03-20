@@ -59,13 +59,19 @@ router.get('/view', function(req, res) {
 
 //Edit form for task
 router.get('/edit/:id', function(req, res){
-  Tasks.findById(req.params.id, function(err, task){
-    res.render('updateTask',{
-      title:'updateTask',
-      task:task
-    });
-  });
+  Tasks.find()
+    .then((tasks) => {
+      res.render('updateTask', { title: 'TaskTaskTask update', tasks });
+    })
+    .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
+//   Tasks.findById(req.params.id, function(err, task){
+//     res.render('updateTask',{
+//       title:'updateTask',
+//       task:task
+//     });
+//   });
+// });
 
 //POST route for update submit form
 router.post('/edit/:id', function(req, res){
