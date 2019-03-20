@@ -50,7 +50,7 @@ router.post('/add', function(req, res){
 
 /* GET taskview page.*/
 router.get('/view', function(req, res) {
-  Task.find()
+  Tasks.find()
     .then((tasks) => {
       res.render('tasksView', { title: 'TaskTaskTask View', tasks });
     })

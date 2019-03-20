@@ -16,10 +16,11 @@ html
               a(href='/tasks/add') Add
           if user
             li
+              a(href='/tasks/view') View
+          if user
+            li
               a(href='/users/logout') Logout
           else
-            li
-              a(href='/tasks/add') Tasks
             li
               a(href='/users/register') Register
             li
