@@ -3,8 +3,11 @@ const router = express.Router();
 
 //task  Model
 let Tasks = require('../models/tasks');
+var task_controller = require('../controllers/taskController');
 // User Model
-let User = require('../models/user');
+let User = require('../models/users');
+var user_controller = require('../controllers/userController');
+
 
 //add route
 //router for add
@@ -18,10 +21,6 @@ router.get('/add', function(req, res) {
 //post route for add submit form
 router.post('/add', function(req, res){
   req.checkBody('taskName', 'task name is required').notEmpty();
-  req.checkBody('priority', 'priority  is required').notEmpty();
-  req.checkBody('content', 'content is required').notEmpty();
-  req.checkBody('duedate', 'due date is required').notEmpty();
-  req.checkBody('taskDateEntered', 'this is automatic').notEmpty();
 
   //Error for validations
   let errors = req.validationErrors();
@@ -30,15 +29,13 @@ router.post('/add', function(req, res){
       title: 'Add Task',
       errors:errors
     });
-  } else {
+  }
 	let tasks = new Tasks();
+  tasks._userId = User._id;
 	tasks.taskName = req.body.taskName;
-	tasks.priority = req.body.priority;
+	// tasks.priority = req.body.priority;
 	tasks.content = req.body.content;
 	tasks.duedate = req.body.duedate;
-  
-  //console.log('Its working');
-  //return;
 
   	tasks.save(function(err){
       if(err){
@@ -49,18 +46,32 @@ router.post('/add', function(req, res){
         res.redirect('/');
       }
     });
-  }
+});
+
+/* GET taskview page.*/
+router.get('/view', function(req, res) {
+  Tasks.find()
+    .then((tasks) => {
+      res.render('tasksView', { title: 'TaskTaskTask View', tasks });
+    })
+    .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
 
 //Edit form for task
 router.get('/edit/:id', function(req, res){
-  Tasks.findById(req.params.id, function(err, task){
-    res.render('updateTask',{
-      title:'updateTask',
-      task:task
-    });
-  });
+  Tasks.find()
+    .then((tasks) => {
+      res.render('updateTask', { title: 'TaskTaskTask update', tasks });
+    })
+    .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
+//   Tasks.findById(req.params.id, function(err, task){
+//     res.render('updateTask',{
+//       title:'updateTask',
+//       task:task
+//     });
+//   });
+// });
 
 //POST route for update submit form
 router.post('/edit/:id', function(req, res){
@@ -91,7 +102,7 @@ router.post('/edit/:id', function(req, res){
       if(err){
         console.log(err);
       }
-      res.send('successfull deletion');
+      res.send('successful deletion');
     });
  });
 

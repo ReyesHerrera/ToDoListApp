@@ -5,7 +5,7 @@ block content
     form( method='POST', action='/tasks/edit/'+task._id)
         #form-group
             label Task Name:
-            input.form-control(name='taskName', type='text', value=tasks.taskName)
+            input.form-control(name='taskName', type='text', value=task.taskName)
         #form-group
             label Priority:
             input.form-control(name='priority', type='text', value=task.priority)

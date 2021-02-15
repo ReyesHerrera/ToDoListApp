@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 
 /**
+ * DB mongoose dependencies.
+ */
+const dotenv = require('dotenv');
+dotenv.config();
+const uri = process.env.MONGODB_URI;
+const mongoose = require('mongoose');
+const fs = require('fs');
+
+
+/**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('todolistapp:server');
 var http = require('http');

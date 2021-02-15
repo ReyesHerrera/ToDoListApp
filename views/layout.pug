@@ -4,43 +4,38 @@ html
     title= title
     link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Margarine|Oswald')
   body
-    nav.navbar.navbar-inverse
-      .container
-        .navbar-header
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='/') ToDo List
-          ul.nav.navbar-nav
+    nav
+        ul
+          h1 ToDo List
+          li
+            a(href='/') Home
+          if user
             li
-              a(href='/') Home
-            if user
-              li
-                a(href='/tasks/add') Add Task
-            if user
-              li 
-                a(href='/users/logout') Logout
-            else
-              li
-                a(href='/tasks/add') Add Task
-              li
-                a(href='/users/register') Register
-              li
-                a(href='/users/login') Login
+              a(href='/tasks/add') Add
+          if user
+            li
+              a(href='/tasks/view') View
+          if user
+            li
+              a(href='/users/logout') Logout
+          else
+            li
+              a(href='/users/register') Register
+            li
+              a(href='/users/login') Login
 
     .container
       != messages('message', locals)
       if errors
         each error, i in errors
           div(class="alert alert-danger") #{error.msg}
-      block content
-      br
-      hr
-      footer 
-      p Team Project Copyright &copy; 2019
+      main
+        block content
+      footer
+          p Made with love! -
+            a(href='mailto:thetodolistapp@gmail.com') MidnightButterfly
     script(src='/bower_compoments/jquery/dist/jquery.js')
     script(src='/bower_compoments/bootstrap/dist/js/bootstrap.js')
     script(src='/js.main.js')

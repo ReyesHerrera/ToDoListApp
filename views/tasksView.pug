@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  p Welcome to #{title}
+
+  if tasks.length
+    table.listing-table.table-dark.table-striped
+      tr
+        th
+          h4 Task
+        th
+          h4 Description
+      each task in tasks
+        tr
+          td= task.taskName
+          td= task.content
+          td
+            button.remove-doc.btn.btn-danger.col-xs-12(data-id="#{tasks._id)") DELETE
+          td
+            button.edit-doc.btn.btn-danger.col-xs-12(data-id="#{tasks._id)") EDIT
+  else
+    p No tasks yet!
